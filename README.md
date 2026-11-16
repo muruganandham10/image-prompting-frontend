@@ -1,5 +1,21 @@
 # React + Vite
 
+## Deployment configuration
+
+The frontend uses `VITE_API_BASE_URL` as its backend URL. Set it in the frontend
+host's build environment to the deployed API URL (for example,
+`https://image-prompt-management-backend.onrender.com`) and rebuild/redeploy.
+If it is unset, the frontend uses that URL by default.
+
+The backend allows `https://braynexai.netlify.app` by default. To allow
+additional frontend domains, set `FRONTEND_ORIGINS` in the backend host's
+environment to the origins, including the scheme and no trailing slash (for
+example, `https://your-app.example.com`). For multiple domains, separate the
+origins with commas, then redeploy the backend.
+
+Local development origins `http://localhost:5173` and `http://localhost:3000`
+remain allowed. Google Drive requests use the same configured backend URL.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:

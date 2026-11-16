@@ -1,11 +1,13 @@
 // src/services/driveService.js
 
+import { API_BASE_URL } from './imageApi';
+
 export const uploadToDrive = async (imageBlob, imageId) => {
   try {
     console.log("Phase 4: Checking Google Drive for existing image...");
 
     // 1. Check if the image already exists in Google Drive
-    const checkRes = await fetch(`http://localhost:8000/api/drive/check-image/${imageId}`);
+    const checkRes = await fetch(`${API_BASE_URL}/api/drive/check-image/${imageId}`);
     const checkData = await checkRes.json();
 
     let existingFileId = null;
@@ -34,7 +36,7 @@ export const uploadToDrive = async (imageBlob, imageId) => {
       formData.append("existing_file_id", existingFileId);
     }
 
-    const uploadRes = await fetch("http://localhost:8000/api/drive/upload-image/", {
+    const uploadRes = await fetch(`${API_BASE_URL}/api/drive/upload-image/`, {
       method: "POST",
       body: formData,
     });
